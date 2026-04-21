@@ -52,7 +52,7 @@ export default function CalcPanel({ results, warning }: Props) {
                     : styles.derived
                 }`}
               >
-                {primary ?? '—'}
+                {primary != null ? String(primary) : '—'}
               </div>
               {secondary && (
                 <div className={styles.cardSub}>{secondary}</div>

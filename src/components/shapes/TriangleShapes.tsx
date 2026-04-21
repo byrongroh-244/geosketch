@@ -189,7 +189,7 @@ export function EquilateralTriangleSvg({ st }: { st: EquilateralState }) {
 // ── Label panels ──────────────────────────────────────────────────────
 export function RightTrianglePanel({ st, onChange }: { st: RightTriangleState; onChange: (n: RightTriangleState) => void }) {
   const upd = (key: keyof RightTriangleState) => (patch: Partial<LabelState>) =>
-    onChange({ ...st, [key]: { ...st[key], ...patch } })
+    onChange({ ...st, [key]: { ...(st[key] as LabelState), ...patch } })
   const [vA, vB, vC] = parseVertices(st.vertexName, 3)
   const sA = vA||'A', sB = vB||'B', sC = vC||'C'
   return (
@@ -209,7 +209,7 @@ export function RightTrianglePanel({ st, onChange }: { st: RightTriangleState; o
 
 export function ThreeAngleTriPanel({ st, onChange, showHeight }: { st: ThreeAngleTriState; onChange: (n: ThreeAngleTriState) => void; showHeight?: boolean }) {
   const upd = (key: keyof ThreeAngleTriState) => (patch: Partial<LabelState>) =>
-    onChange({ ...st, [key]: { ...st[key], ...patch } })
+    onChange({ ...st, [key]: { ...(st[key] as LabelState), ...patch } })
   const [vA, vB, vC] = parseVertices(st.vertexName, 3)
   const sA = vA||'A', sB = vB||'B', sC = vC||'C'
   return (
@@ -236,7 +236,7 @@ export function ThreeAngleTriPanel({ st, onChange, showHeight }: { st: ThreeAngl
 
 export function EquilateralPanel({ st, onChange }: { st: EquilateralState; onChange: (n: EquilateralState) => void }) {
   const upd = (key: keyof EquilateralState) => (patch: Partial<LabelState>) =>
-    onChange({ ...st, [key]: { ...st[key], ...patch } })
+    onChange({ ...st, [key]: { ...(st[key] as LabelState), ...patch } })
   const [vA, vB, vC] = parseVertices(st.vertexName, 3)
   const sA = vA||'A', sB = vB||'B', sC = vC||'C'
   return (

@@ -60,11 +60,11 @@ interface Props {
   onSelect: (key: ShapeKey) => void
 }
 
-function Thumb({ def, active, onSelect }: { def: ThumbDef; active: boolean; onSelect: (k: ShapeKey) => void }) {
+function Thumb({ def, active, onSelect }: { key?: string; def: ThumbDef; active: boolean; onSelect: (key: ShapeKey) => void }) {
   return (
     <div
       className={`${styles.thumb} ${active ? styles.active : ''} ${def.soon ? styles.soon : ''}`}
-      onClick={() => !def.soon && onSelect(def.key)}
+      onClick={() => !def.soon && def.key && onSelect(def.key as ShapeKey)}
     >
       <span className={styles.thumbName}>{def.name}</span>
       <svg viewBox="0 0 46 34" dangerouslySetInnerHTML={{ __html: def.svg }} />
@@ -73,42 +73,25 @@ function Thumb({ def, active, onSelect }: { def: ThumbDef; active: boolean; onSe
 }
 
 export default function ShapeLibrary({ current, onSelect }: Props) {
+  const thumb = (t: ThumbDef) => (
+    <Thumb key={String(t.key)} def={t} active={current === t.key} onSelect={onSelect} />
+  )
   return (
     <div className={styles.library}>
       <div className={styles.catLabel}>Triangles</div>
-      <div className={styles.grid}>
-        {TRIANGLES.map(t => (
-          <Thumb key={t.key} def={t} active={current === t.key} onSelect={onSelect} />
-        ))}
-      </div>
+      <div className={styles.grid}>{TRIANGLES.map(thumb)}</div>
 
       <div className={styles.catLabel}>Quadrilaterals</div>
-      <div className={styles.grid}>
-        {QUADS.map(t => (
-          <Thumb key={t.key} def={t} active={current === t.key} onSelect={onSelect} />
-        ))}
-      </div>
+      <div className={styles.grid}>{QUADS.map(thumb)}</div>
 
       <div className={styles.catLabel}>Angles</div>
-      <div className={styles.grid}>
-        {ANGLES.map(t => (
-          <Thumb key={t.key} def={t} active={current === t.key} onSelect={onSelect} />
-        ))}
-      </div>
+      <div className={styles.grid}>{ANGLES.map(thumb)}</div>
 
       <div className={styles.catLabel}>Segments</div>
-      <div className={styles.grid}>
-        {SEGMENTS.map(t => (
-          <Thumb key={t.key} def={t} active={current === t.key} onSelect={onSelect} />
-        ))}
-      </div>
+      <div className={styles.grid}>{SEGMENTS.map(thumb)}</div>
 
       <div className={styles.catLabel}>Other</div>
-      <div className={styles.grid}>
-        {OTHER.map(t => (
-          <Thumb key={t.key} def={t} active={current === t.key} onSelect={onSelect} />
-        ))}
-      </div>
+      <div className={styles.grid}>{OTHER.map(thumb)}</div>
 
       <div className={`${styles.catLabel} ${styles.soon}`}>Coming soon</div>
       <div className={styles.grid}>

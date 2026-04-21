@@ -126,7 +126,6 @@ export default function App() {
         const ts = shapeState as import('./components/shapes/QuadShapes').TrapState
         return calcTrap({ ...vals, h: ts.hVal })
       }
-      case 'coord-plane':       return null
       case 'reg-polygon':       return calcRegPolygonResults(shapeState as RegPolygonState)
       case 'angle-acute':
       case 'angle-right':

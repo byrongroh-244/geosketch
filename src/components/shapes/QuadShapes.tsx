@@ -293,7 +293,7 @@ function DiagToggle({ on, d1, onToggle, onD1 }: { on:boolean;d1:LabelState;onTog
 }
 
 // Rect/Square diagonal toggle (single diagonal A→C)
-function SingleDiagPanel({ st, onChange, verts }: { st:SingleDiagState; onChange:(n:SingleDiagState)=>void; verts:string[] }) {
+function SingleDiagPanel<T extends SingleDiagState>({ st, onChange, verts }: { st:T; onChange:(n:T)=>void; verts:string[] }) {
   const [sA,,sC]=verts
   return (
     <>

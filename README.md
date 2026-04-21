@@ -49,4 +49,3 @@ Output goes to `dist/`. Upload that folder to any static host.
 - KaTeX (math rendering)
 - html-to-image (PNG export — correctly handles KaTeX foreignObject)
 - CSS Modules
-# geosketch
